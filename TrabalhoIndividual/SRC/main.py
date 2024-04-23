@@ -1,4 +1,3 @@
-import os
 import buscador
 import indexador
 import processador as pc

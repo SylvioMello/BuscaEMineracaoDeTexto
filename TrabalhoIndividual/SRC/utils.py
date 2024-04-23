@@ -2,9 +2,9 @@ import os
 import sys
 import logging
 import numpy as np
+from math import log10
 
 def read_config(config_file):
-    """"Based on the module, reads the configuration file and returns the necessary paths"""
     module = config_file.split('.')[0]
     logging.basicConfig(filename=f'../RESULT/{module}.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
     logging.info("Started reading the configuration file.")
@@ -72,23 +72,33 @@ def read_config(config_file):
         sys.exit(1)
 
 def get_vector(document, model):
-    """Retorna o vetor de um documento no modelo."""
     return model[str(document)].to_numpy()  
 
-
 def get_vector_size(vector):
-    """Retorna a norma de um vetor."""
-
     return np.linalg.norm(vector)
 
-
 def sim_cos(query, document, model):
-    """Retorna a similaridade de cossenos entre uma consulta e um documento, dado um modelo em que ambos estão presentes."""
-
     q = get_vector(query, model)
     d = get_vector(document, model)
-
     q_dot_d = np.dot(q, d)
     qxd = get_vector_size(q) * get_vector_size(d)
-    
     return q_dot_d / qxd
+
+def get_n(matrix):
+    N = len(matrix.columns)
+    return N
+
+def get_nj(token, matrix):
+    row = matrix.loc[token]
+    return row.astype(bool).sum()
+
+def get_tf(token, document, matrix):
+    return int(matrix.loc[token, str(document)])
+
+def get_tfn(token, document, matrix):
+    tf = get_tf(token, document, matrix)
+    biggest_tf = int(matrix.loc[:, str(document)].max())
+    return tf / biggest_tf
+
+def get_idf(token, matrix):
+    return log10(get_n(matrix) / get_nj(token, matrix))
