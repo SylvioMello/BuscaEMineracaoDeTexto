@@ -1,18 +1,18 @@
-import processador as pq
+import processador as pc
 import geradorListaInvertida as gli
 import indexador
 import buscador
 
 # Início da execução do módulo 'processando consultas'
-pq.start_exec()
-read, queries, expected = pq.read_config("PC.CFG")
+pc.start_exec()
+read, queries, expected = pc.read_config("PC.CFG")
 # Lendo arquivo com consultas
-xml_root = pq.get_xml_root(read)
+xml_root = pc.get_xml_root(read)
 # Escrevendo arquivos com consultas e resultados esperados, respectivamente
-pq.get_queries_file(queries, xml_root)
-pq.get_expected_file(expected, xml_root)
+pc.get_queries_file(queries, xml_root)
+pc.get_expected_file(expected, xml_root)
 # Fim da execução do módulo
-pq.finish_exec()
+pc.finish_exec()
 
 
 # Início da execução do módulo 'gerador lista invertida'
