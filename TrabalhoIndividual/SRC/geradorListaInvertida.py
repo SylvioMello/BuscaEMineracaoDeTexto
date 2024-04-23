@@ -8,32 +8,6 @@ from nltk.tokenize import wordpunct_tokenize
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 
-
-def read_config_file(config_file):
-    """"Retorna os paths dos arquivos de leitura e de escrita. Lê o arquivo de configuração do módulo. Os path dos
-    arquivos de leitura são passados em uma lista na primeira posição do retorno."""
-
-    logging.basicConfig(filename='../RESULT/GLI.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
-    logging.info("Started reading the configuration file.")
-    read_files = []
-    write_file = "../RESULT/"
-    cfg_path = "../BasesTrabalhoIndividual/" + config_file
-    with open(cfg_path, "r") as config_file:
-        for line in config_file.readlines():
-            instruction, filename = line.split("=")
-            filename = filename.strip()
-            
-            if instruction == "LEIA":
-                file_path = os.path.join("../BasesTrabalhoIndividual", filename)
-                read_files.append(file_path)
-            elif instruction == "ESCREVA":
-                write_file += filename
-
-    logging.info("Finished reading the configuration file.")
-    
-    return (read_files, write_file)
-
-
 def get_recordnum_text(file):
     """É retornado um dicionário contendo o número RECORDNUM como chave e o texto presente no RECORD como seu valor
     correspondente. É necessário passar o path de um arquivo XML."""

@@ -1,11 +1,12 @@
-import processador as pc
-import geradorListaInvertida as gli
-import indexador
 import buscador
+import indexador
+import processador as pc
+from utils import read_config
+import geradorListaInvertida as gli
 
 # Início da execução do módulo 'processando consultas'
 pc.start_exec()
-read, queries, expected = pc.read_config("PC.CFG")
+read, queries, expected = read_config("PC.CFG")
 # Lendo arquivo com consultas
 xml_root = pc.get_xml_root(read)
 # Escrevendo arquivos com consultas e resultados esperados, respectivamente
@@ -17,7 +18,7 @@ pc.finish_exec()
 
 # Início da execução do módulo 'gerador lista invertida'
 gli.start_exec()
-read_files, write_file = gli.read_config_file("GLI.CFG")
+read_files, write_file = read_config("GLI.CFG")
 # Gerando arquivo da lista invertida
 gli.get_tokens_file(read_files, write_file)
 # Fim da execução do módulo
@@ -32,7 +33,7 @@ if normalized.lower() == "y":
     type_tf = "tfn"
 else:
     type_tf = "tf"
-tokens, model = indexador.read_config_file("INDEX.CFG")
+tokens, model = read_config("INDEX.CFG")
 # Gerando modelo através da matriz termo documento que foi construída com a lista invertida
 indexador.save_model(model, tokens, type_tf)
 # Fim da execução do módulo
@@ -41,7 +42,7 @@ indexador.finish_exec()
 
 # Início da execução do módulo 'buscador'
 buscador.start_exec()
-model_file, queries_file, results_file = buscador.read_config_file("BUSCA.CFG")
+model_file, queries_file, results_file = read_config("BUSCA.CFG")
 # Lê o modelo na memória
 model = buscador.get_model(model_file)
 # Lê as consultas na memória

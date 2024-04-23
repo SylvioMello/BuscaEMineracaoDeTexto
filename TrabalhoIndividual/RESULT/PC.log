@@ -1,14 +1,14 @@
-2024-04-22 20:39:03,776 - Log created.
-2024-04-22 20:39:21,069 - Module processing_queries started.
-2024-04-22 20:39:21,069 - Started reading the configuration file.
-2024-04-22 20:39:21,070 - Finished reading the configuration file.
-2024-04-22 20:39:21,070 - Parsing the xml queries file.
-2024-04-22 20:39:21,086 - XML file parsed.
-2024-04-22 20:39:21,086 - Starting the generation of queries csv file.
-2024-04-22 20:39:21,090 - 99 queries processed.
-2024-04-22 20:39:21,090 - Mean of the time each query has taken to be processed in queries file: 0:00:00.000006s
-2024-04-22 20:39:21,090 - Queries csv file generated.
-2024-04-22 20:39:21,090 - Starting the generation of expected csv file.
-2024-04-22 20:39:21,098 - Mean of the time each query has taken to be processed in expected file: 0:00:00.000063s
-2024-04-22 20:39:21,098 - Expected csv file generated.
-2024-04-22 20:39:21,099 - Module processing_queries finished execution.
+2024-04-23 10:27:25,513 - Log created.
+2024-04-23 10:27:25,520 - Module processing_queries started.
+2024-04-23 10:27:25,520 - Started reading the configuration file.
+2024-04-23 10:27:25,521 - Finished reading the configuration file.
+2024-04-23 10:27:25,521 - Parsing the xml queries file.
+2024-04-23 10:27:25,537 - XML file parsed.
+2024-04-23 10:27:25,537 - Starting the generation of queries csv file.
+2024-04-23 10:27:25,543 - 99 queries processed.
+2024-04-23 10:27:25,543 - Mean of the time each query has taken to be processed in queries file: 0:00:00.000012s
+2024-04-23 10:27:25,543 - Queries csv file generated.
+2024-04-23 10:27:25,544 - Starting the generation of expected csv file.
+2024-04-23 10:27:25,555 - Mean of the time each query has taken to be processed in expected file: 0:00:00.000073s
+2024-04-23 10:27:25,555 - Expected csv file generated.
+2024-04-23 10:27:25,556 - Module processing_queries finished execution.

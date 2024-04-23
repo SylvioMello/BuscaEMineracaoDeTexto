@@ -6,30 +6,6 @@ import pandas as pd
 import numpy as np
 from math import log10
 
-
-def read_config_file(config_file):
-    """"Retorna os paths dos arquivos de leitura e de escrita. Lê o arquivo de configuração do módulo."""
-
-    logging.basicConfig(filename='../RESULT/INDEX.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
-    logging.info("Started reading the configuration file.")
-    read_file = "../RESULT/"
-    write_file = "../RESULT/"
-    cfg_path = "../BasesTrabalhoIndividual/" + config_file
-
-    with open(cfg_path, "r") as config_file:
-        for line in config_file.readlines():
-            instruction, filename = line.split("=")
-            filename = filename.strip()
-            
-            if instruction == "LEIA":
-                read_file += filename
-            elif instruction == "ESCREVA":
-                write_file += filename
-
-    logging.info("Finished reading the configuration file.")
-    return (read_file, write_file)
-
-
 def get_term_document_matrix(tokens_file):
     """Retornamos um DataFrame do pandas com a matriz termo documento. Os índices são os termos e as colunas são os números dos documentos.
     O valor correspondente de termo x documento representa a quantidade de vezes que uma palavra aparece em determinado documento. É preciso

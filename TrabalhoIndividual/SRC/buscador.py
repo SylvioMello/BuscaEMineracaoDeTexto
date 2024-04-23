@@ -4,35 +4,6 @@ import geradorListaInvertida as gil
 import numpy as np
 from datetime import datetime
 
-
-def read_config_file(config_file):
-    """"Retorna os paths dos arquivos que contêm o modelo, as consultas e também o arquivo que será escrito como resultado. 
-    Lê o arquivo de configuração do módulo."""
-
-    logging.basicConfig(filename='../RESULT/BUSCA.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
-    logging.info("Started reading the configuration file.")
-    model_file = "../RESULT/"
-    queries_file = "../RESULT/"
-    results_file = "../RESULT/"
-    cfg_path = "../BasesTrabalhoIndividual/" + config_file
-
-    with open(cfg_path, "r") as config_file:
-        for line in config_file.readlines():
-            instruction, filename = line.split("=")
-            filename = filename.strip()
-            
-            if instruction == "MODELO":
-                model_file += filename
-            elif instruction == "CONSULTAS":
-                queries_file += filename
-            elif instruction == "RESULTADOS":
-                results_file += filename
-            
-    logging.info("Finished reading the configuration file.")
-    
-    return model_file, queries_file, results_file
-
-
 def get_model(model_file):
     """Retorna o modelo como DataFrame. É necessário passar o path do arquivo do modelo."""
     

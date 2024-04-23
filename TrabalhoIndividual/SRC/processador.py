@@ -3,33 +3,6 @@ import numpy as np
 from datetime import datetime
 from xml.etree import ElementTree as ET
 
-
-def read_config(config_file):
-    """"Retorna os paths dos arquivos de leitura, consulta e esperados. Lê o arquivo de configuração do módulo."""
-    
-    logging.basicConfig(filename='../RESULT/PC.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
-    logging.info("Started reading the configuration file.")
-    read_file = "../BasesTrabalhoIndividual/"
-    queries_file = "../RESULT/"
-    expected_file = "../RESULT/"
-    cfg_path = "../BasesTrabalhoIndividual/" + config_file
-
-    with open(cfg_path, "r") as config_file:
-        for line in config_file.readlines():
-            instruction, filename = line.split("=")
-            filename = filename.strip()
-
-            if instruction == "LEIA":
-                read_file += filename
-            elif instruction == "CONSULTAS":
-                queries_file += filename
-            elif instruction == "ESPERADOS":
-                expected_file += filename
-                
-    logging.info("Finished reading the configuration file.")
-    return (read_file, queries_file, expected_file)
-
-
 def get_xml_root(path):
     """Retorna o elemento raíz de um arquivo XML. É passado como argumento o path para esse documento."""
 
