@@ -1,10 +1,17 @@
-from datetime import datetime
-from tqdm import tqdm
-import sys
 import logging
-import pandas as pd
 import numpy as np
+import pandas as pd
+from tqdm import tqdm
 from math import log10
+from datetime import datetime
+
+# Configuramos o arquivo que será o log do módulo
+logging.basicConfig(filename='../RESULT/INDEX.log', filemode='w',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
+logging.info("Initializing log...")
+
+def begin_execution():
+    logging.basicConfig(filename='../RESULT/INDEX.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
+    logging.info("Module Of Indexer started.")
 
 def get_term_document_matrix(tokens_file):
     """Retornamos um DataFrame do pandas com a matriz termo documento. Os índices são os termos e as colunas são os números dos documentos.
@@ -149,17 +156,6 @@ def save_model(path, tokens_file, type_tf):
     model.to_csv(path, sep=";")
     logging.info("Model saved.")
 
-
-def start_exec():
-    logging.basicConfig(filename='../RESULT/INDEX.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
-    logging.info("Module indexer started.")
-
-
-def finish_exec():
+def finish_execution():
     logging.basicConfig(filename='../RESULT/INDEX.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
     logging.info("Module indexer finished execution.")
-    
-
-# Configuramos o arquivo que será o log do módulo
-logging.basicConfig(filename='../RESULT/INDEX.log', filemode='w',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
-logging.info("Log created.")

@@ -1,6 +1,7 @@
 import os
 import sys
 import logging
+import numpy as np
 
 def read_config(config_file):
     """"Based on the module, reads the configuration file and returns the necessary paths"""
@@ -69,3 +70,25 @@ def read_config(config_file):
     else:
         print('This module is not implemented to be used, please use one of: PC, GLI, INDEX, BUSCA')
         sys.exit(1)
+
+def get_vector(document, model):
+    """Retorna o vetor de um documento no modelo."""
+    return model[str(document)].to_numpy()  
+
+
+def get_vector_size(vector):
+    """Retorna a norma de um vetor."""
+
+    return np.linalg.norm(vector)
+
+
+def sim_cos(query, document, model):
+    """Retorna a similaridade de cossenos entre uma consulta e um documento, dado um modelo em que ambos estão presentes."""
+
+    q = get_vector(query, model)
+    d = get_vector(document, model)
+
+    q_dot_d = np.dot(q, d)
+    qxd = get_vector_size(q) * get_vector_size(d)
+    
+    return q_dot_d / qxd

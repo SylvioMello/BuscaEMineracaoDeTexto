@@ -1,15 +1,15 @@
-2024-04-23 10:27:25,497 - Log created.
-2024-04-23 10:52:03,159 - Module searcher started.
-2024-04-23 10:52:03,160 - Started reading the configuration file.
-2024-04-23 10:52:03,161 - Finished reading the configuration file.
-2024-04-23 10:52:03,161 - Loading model.
-2024-04-23 10:52:04,379 - Model loaded.
-2024-04-23 10:52:04,380 - Loading queries.
-2024-04-23 10:52:04,483 - Queries loaded.
-2024-04-23 10:52:04,484 - Started getting rankings of each query by each document.
-2024-04-23 10:52:04,484 - Inserting queries in model.
-2024-04-23 10:52:23,255 - Queries inserted in model. Time taken: 0:00:18.770598
-2024-04-23 10:52:40,017 - Rankings created. Time taken: 0:00:35.532871
-2024-04-23 10:52:40,026 - Generating the results file. CSV format file with 'QueryNumber; [position in ranking, doc_number, value of sim_cos]'.
-2024-04-23 10:52:40,238 - Results file created.
-2024-04-23 10:52:40,239 - Module searcher finished execution.
+2024-04-23 13:28:47,084 - Initializing log...
+2024-04-23 13:53:00,423 - Module of Searceher started.
+2024-04-23 13:53:00,424 - Started reading the configuration file.
+2024-04-23 13:53:00,425 - Finished reading the configuration file.
+2024-04-23 13:53:00,425 - Loading model.
+2024-04-23 13:53:01,620 - Model loaded.
+2024-04-23 13:53:01,621 - Loading queries.
+2024-04-23 13:53:01,690 - Queries loaded.
+2024-04-23 13:53:01,690 - Started getting rankings of each query by each document.
+2024-04-23 13:53:01,691 - Inserting queries in model.
+2024-04-23 13:53:18,038 - Queries inserted in model. Time taken: 0:00:16.347524
+2024-04-23 13:53:35,086 - Rankings created. Time taken: 0:00:33.395784
+2024-04-23 13:53:35,111 - Generating the results file. CSV format file with 'QueryNumber; [position in ranking, doc_number, value of sim_cos]'.
+2024-04-23 13:53:35,377 - Results file created.
+2024-04-23 13:53:35,378 - Module searcher finished execution.

@@ -1,12 +1,23 @@
-import os
+import nltk
 import logging
 import numpy as np
 from datetime import datetime
-from xml.etree import ElementTree as ET
-import nltk
-from nltk.tokenize import wordpunct_tokenize
 from nltk.corpus import stopwords
+from xml.etree import ElementTree as ET
 from nltk.stem.porter import PorterStemmer
+from nltk.tokenize import wordpunct_tokenize
+
+# Configuramos o arquivo que será o log do módulo e baixamos dependências do nltk
+logging.basicConfig(filename='../RESULT/GLI.log', filemode='w',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
+logging.info("Initializing log...")
+logging.info("Downloading 'punkt' and 'stopwords' from nltk-data...")
+nltk.download('punkt')
+nltk.download('stopwords')
+logging.info("Finished downloading 'punkt' and 'stopwords'.")
+
+def begin_execution():
+    logging.basicConfig(filename='../RESULT/GLI.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
+    logging.info("Module of Inverted List Generated started.")
 
 def get_recordnum_text(file):
     """É retornado um dicionário contendo o número RECORDNUM como chave e o texto presente no RECORD como seu valor
@@ -147,21 +158,6 @@ def get_tokens_file(read_files, path):
     
     logging.info(f"Finished creating the inverted list file.")
 
-
-def start_exec():
-    logging.basicConfig(filename='../RESULT/GLI.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
-    logging.info("Module generate_inverted_list started.")
-
-
-def finish_exec():
+def finish_execution():
     logging.basicConfig(filename='../RESULT/GLI.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
     logging.info("Module generate_inverted_list finished execution.")
-
-
-# Configuramos o arquivo que será o log do módulo e baixamos dependências do nltk
-logging.basicConfig(filename='../RESULT/GLI.log', filemode='w',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
-logging.info("Log created.")
-logging.info("Downloading 'punkt' and 'stopwords' from nltk-data...")
-nltk.download('punkt')
-nltk.download('stopwords')
-logging.info("Finished downloading 'punkt' and 'stopwords'.")

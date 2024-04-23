@@ -1,8 +1,17 @@
 import logging
-import pandas as pd
-import geradorListaInvertida as gil
 import numpy as np
+import pandas as pd
+from utils import sim_cos
 from datetime import datetime
+import geradorListaInvertida as gli
+
+# Configuramos o arquivo que será o log do módulo
+logging.basicConfig(filename='../RESULT/BUSCA.log', filemode='w',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
+logging.info("Initializing log...")
+
+def begin_execution():
+    logging.basicConfig(filename='../RESULT/BUSCA.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
+    logging.info("Module of Searceher started.")
 
 def get_model(model_file):
     """Retorna o modelo como DataFrame. É necessário passar o path do arquivo do modelo."""
@@ -27,7 +36,7 @@ def get_queries(queries_file):
     queries.set_index(["QueryNumber"], inplace=True)
 
     for number, text in queries.itertuples():
-        processed_text = gil.preproccess_text(text)
+        processed_text = gli.preproccess_text(text)
         queries.at[number, "QueryText"] = processed_text
 
     logging.info("Queries loaded.")
@@ -65,30 +74,6 @@ def insert_queries(model, queries):
     logging.info(f"Queries inserted in model. Time taken: {time_taken}")
 
     return model
-
-
-def get_vector(document, model):
-    """Retorna o vetor de um documento no modelo."""
-    return model[str(document)].to_numpy()  
-
-
-def get_vector_size(vector):
-    """Retorna a norma de um vetor."""
-
-    return np.linalg.norm(vector)
-
-
-def sim_cos(query, document, model):
-    """Retorna a similaridade de cossenos entre uma consulta e um documento, dado um modelo em que ambos estão presentes."""
-
-    q = get_vector(query, model)
-    d = get_vector(document, model)
-
-    q_dot_d = np.dot(q, d)
-    qxd = get_vector_size(q) * get_vector_size(d)
-    
-    return q_dot_d / qxd
-
 
 def get_ranking(model, queries):
     """Retorna o ranking no formato de um DataFrame. Ele contém as consultas como colunas e os documentos em suas linhas.
@@ -142,17 +127,6 @@ def get_results(file, ranking):
     
     logging.info("Results file created.")
 
-
-def start_exec():
-    logging.basicConfig(filename='../RESULT/BUSCA.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
-    logging.info("Module searcher started.")
-
-
-def finish_exec():
+def finish_execution():
     logging.basicConfig(filename='../RESULT/BUSCA.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
     logging.info("Module searcher finished execution.")
-
-
-# Configuramos o arquivo que será o log do módulo
-logging.basicConfig(filename='../RESULT/BUSCA.log', filemode='w',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
-logging.info("Log created.")

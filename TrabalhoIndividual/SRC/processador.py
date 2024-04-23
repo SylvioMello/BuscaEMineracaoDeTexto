@@ -3,6 +3,14 @@ import numpy as np
 from datetime import datetime
 from xml.etree import ElementTree as ET
 
+# Configuramos o arquivo que será o log do módulo
+logging.basicConfig(filename='../RESULT/PC.log', filemode='w',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
+logging.info("Initializing log...")
+
+def begin_execution():
+    logging.basicConfig(filename='../RESULT/PC.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
+    logging.info("Module of Query Processor Started.")
+
 def get_xml_root(path):
     """Retorna o elemento raíz de um arquivo XML. É passado como argumento o path para esse documento."""
 
@@ -83,17 +91,6 @@ def get_expected_file(path, xml_root):
     logging.info(f"Mean of the time each query has taken to be processed in expected file: {mean}s")
     logging.info("Expected csv file generated.")
 
-
-def start_exec():
-    logging.basicConfig(filename='../RESULT/PC.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
-    logging.info("Module processing_queries started.")
-
-
-def finish_exec():
+def finish_execution():
     logging.basicConfig(filename='../RESULT/PC.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
     logging.info("Module processing_queries finished execution.")
-
-
-# Configuramos o arquivo que será o log do módulo
-logging.basicConfig(filename='../RESULT/PC.log', filemode='w',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
-logging.info("Log created.")

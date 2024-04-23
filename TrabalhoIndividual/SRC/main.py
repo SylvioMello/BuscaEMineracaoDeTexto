@@ -1,55 +1,40 @@
+import os
 import buscador
 import indexador
 import processador as pc
 from utils import read_config
 import geradorListaInvertida as gli
 
-# Início da execução do módulo 'processando consultas'
-pc.start_exec()
+# PROCESSADOR DE CONSULTAS
+pc.begin_execution()
 read, queries, expected = read_config("PC.CFG")
-# Lendo arquivo com consultas
 xml_root = pc.get_xml_root(read)
-# Escrevendo arquivos com consultas e resultados esperados, respectivamente
 pc.get_queries_file(queries, xml_root)
 pc.get_expected_file(expected, xml_root)
-# Fim da execução do módulo
-pc.finish_exec()
+pc.finish_execution()
 
-
-# Início da execução do módulo 'gerador lista invertida'
-gli.start_exec()
+# GERADOR LISTA INVERTIDA
+gli.begin_execution()
 read_files, write_file = read_config("GLI.CFG")
-# Gerando arquivo da lista invertida
 gli.get_tokens_file(read_files, write_file)
-# Fim da execução do módulo
-gli.finish_exec()
+gli.finish_execution()
 
-
-# Início da execução do módulo 'indexador'
-indexador.start_exec()
-# Escolha do usuário entre usar o tf normalizado ou não
+# INDEXADOR
+indexador.begin_execution()
 normalized = input("tf normalized [ y / n ]? ")
 if normalized.lower() == "y":
     type_tf = "tfn"
 else:
     type_tf = "tf"
 tokens, model = read_config("INDEX.CFG")
-# Gerando modelo através da matriz termo documento que foi construída com a lista invertida
 indexador.save_model(model, tokens, type_tf)
-# Fim da execução do módulo
-indexador.finish_exec()
+indexador.finish_execution()
 
-
-# Início da execução do módulo 'buscador'
-buscador.start_exec()
+# BUSCADOR
+buscador.begin_execution()
 model_file, queries_file, results_file = read_config("BUSCA.CFG")
-# Lê o modelo na memória
 model = buscador.get_model(model_file)
-# Lê as consultas na memória
 queries = buscador.get_queries(queries_file)
-# Usa as consultas e o modelo para gerar o ranking de documentos que mais se aproximam das consultas
 ranking = buscador.get_ranking(model, queries)
-# Gera o arquivo de resultados com o arquivo de ranking gerado
 buscador.get_results(results_file, ranking)
-# Fim da execução do módulo
-buscador.finish_exec()
+buscador.finish_execution()
