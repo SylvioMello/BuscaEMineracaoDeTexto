@@ -11,60 +11,60 @@ def begin_execution():
     logging.basicConfig(filename='../RESULT/PC.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
     logging.info("Module of Query Processor Started.")
 
-def get_xml_root(path):
+def gerar_raiz_xml(caminho):
     logging.basicConfig(filename='../RESULT/PC.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
     logging.info("Started parsing the xml file.")
-    xml_file = ET.parse(path)
-    xml_root = xml_file.getroot()
+    arquivo_xml = ET.parse(caminho)
+    raiz_xml = arquivo_xml.getroot()
     logging.info("XML file parsed.")
-    return xml_root
+    return raiz_xml
 
-def get_queries_file(path, xml_root):
+def gerar_arquivo_consultas(caminho, raiz_xml):
     logging.basicConfig(filename='../RESULT/PC.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
     logging.info("Starting the generation of queries csv file.")
-    with open(path, 'w') as queries:
-        queries.write("QueryNumber;QueryText\n")
-        queries_read = 0
+    with open(caminho, 'w') as consultas:
+        consultas.write("QueryNumber;QueryText\n")
+        consultas_lidas = 0
         times = np.array([])
-        for query in xml_root:
+        for consultas_xml in raiz_xml:
             start_time = datetime.now()
-            queries_read += 1
-            query_number = ""
-            query_text = ""
-            for element in query:
-                if element.tag == "QueryNumber":
-                    query_number = int(element.text)
-                elif element.tag == "QueryText":
-                    query_text = element.text.upper()
-                    query_text = query_text.replace('\n  ', '')
-                    query_text = query_text.replace(';', '')
+            consultas_lidas += 1
+            consulta_numero = ""
+            consulta_texto = ""
+            for elemento in consultas_xml:
+                if elemento.tag == "QueryNumber":
+                    consulta_numero = int(elemento.text)
+                elif elemento.tag == "QueryText":
+                    consulta_texto = elemento.text.upper()
+                    consulta_texto = consulta_texto.replace('\n  ', '')
+                    consulta_texto = consulta_texto.replace(';', '')
 
-            queries.write(f"{query_number};{query_text}")
+            consultas.write(f"{consulta_numero};{consulta_texto}")
             time_taken = datetime.now() - start_time
             times = np.append(times, [time_taken])
     mean = np.mean(times) 
-    logging.info(f"{queries_read} queries processed.")
-    logging.info(f"Mean time each query has taken to be processed in queries file: {mean}s")
+    logging.info(f"{consultas_lidas} queries processed.")
+    logging.info(f"Mean time each queriy has taken to be processed in queries file: {mean}s")
     logging.info("Queries csv file generated.")
 
-def get_expected_file(path, xml_root):
+def gerar_arquivo_esperado(caminho, raiz_xml):
     logging.basicConfig(filename='../RESULT/PC.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
     logging.info("Starting the generation of expected csv file.")
-    with open(path, 'w') as expected:
-        expected.write("QueryNumber;DocNumber;DocVotes\n")
+    with open(caminho, 'w') as esperado:
+        esperado.write("QueryNumber;DocNumber;DocVotes\n")
         times = np.array([])
-        for query in xml_root:
+        for consultas in raiz_xml:
             start_time = datetime.now()
-            query_number = ""
-            for element in query:
-                if element.tag == "QueryNumber":
-                    query_number = int(element.text)
-                elif element.tag == "Records":
-                    for item in element:
-                        doc_number = int(item.text)
+            consulta_numero = ""
+            for elemento in consultas:
+                if elemento.tag == "QueryNumber":
+                    consulta_numero = int(elemento.text)
+                elif elemento.tag == "Records":
+                    for item in elemento:
+                        documento_numero = int(item.text)
                         score = item.attrib['score'].replace('0', '')
-                        doc_votes = len(score)
-                        expected.write(f"{query_number};{doc_number};{doc_votes}\n")
+                        documento_votos = len(score)
+                        esperado.write(f"{consulta_numero};{documento_numero};{documento_votos}\n")
             time_taken = datetime.now() - start_time
             times = np.append(times, [time_taken])
     mean = np.mean(times)

@@ -7,15 +7,15 @@ import geradorListaInvertida as gli
 # PROCESSADOR DE CONSULTAS
 pc.begin_execution()
 read, queries, expected = read_config("PC.CFG")
-xml_root = pc.get_xml_root(read)
-pc.get_queries_file(queries, xml_root)
-pc.get_expected_file(expected, xml_root)
+xml_root = pc.gerar_raiz_xml(read)
+pc.gerar_arquivo_consultas(queries, xml_root)
+pc.gerar_arquivo_esperado(expected, xml_root)
 pc.finish_execution()
 
 # GERADOR LISTA INVERTIDA
 gli.begin_execution()
 read_files, write_file = read_config("GLI.CFG")
-gli.get_tokens_file(read_files, write_file)
+gli.gerar_arquivo_tokens(read_files, write_file)
 gli.finish_execution()
 
 # INDEXADOR
@@ -26,14 +26,14 @@ if normalized.lower() == "y":
 else:
     type_tf = "tf"
 tokens, model = read_config("INDEX.CFG")
-indexador.save_model(model, tokens, type_tf)
+indexador.salvar_modelo(model, tokens, type_tf)
 indexador.finish_execution()
 
 # BUSCADOR
 buscador.begin_execution()
 model_file, queries_file, results_file = read_config("BUSCA.CFG")
-model = buscador.get_model(model_file)
-queries = buscador.get_queries(queries_file)
-ranking = buscador.get_ranking(model, queries)
-buscador.get_results(results_file, ranking)
+model = buscador.carregar_modelo(model_file)
+queries = buscador.carregar_queries(queries_file)
+ranking = buscador.criar_ranking(model, queries)
+buscador.gerar_resultados(results_file, ranking)
 buscador.finish_execution()

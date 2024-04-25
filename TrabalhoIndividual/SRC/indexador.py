@@ -13,63 +13,63 @@ def begin_execution():
     logging.basicConfig(filename='../RESULT/INDEX.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
     logging.info("Module Of Indexer started.")
 
-def get_term_document_matrix(tokens_file):
+def gerar_matriz_termos_documentos(tokens_file):
     logging.basicConfig(filename='../RESULT/INDEX.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
     logging.info("Started generating the term document matrix.")
     start_time = datetime.now()
-    number_tokens = 0
-    path = "../RESULT/" + tokens_file
-    inverted_list = pd.read_csv(path, sep=';', converters={"Appearance": pd.eval})
-    matrix = pd.DataFrame(inverted_list["Token"])
-    matrix.set_index(["Token"], inplace=True)
-    shape = (matrix.shape[0], 1)
-    for token, docs in inverted_list.itertuples(index=False):
-        number_tokens += 1
-        for doc in docs:
-            if str(doc) in matrix.columns:
-                matrix.at[token, str(doc)] += 1
+    numero_de_tokens = 0
+    caminho = "../RESULT/" + tokens_file
+    lista_invertida = pd.read_csv(caminho, sep=';', converters={"Appearance": pd.eval})
+    matriz = pd.DataFrame(lista_invertida["Token"])
+    matriz.set_index(["Token"], inplace=True)
+    shape = (matriz.shape[0], 1)
+    for token, documentos in lista_invertida.itertuples(index=False):
+        numero_de_tokens += 1
+        for documento in documentos:
+            if str(documento) in matriz.columns:
+                matriz.at[token, str(documento)] += 1
             else:
-                zeros = pd.DataFrame(np.zeros(shape), index=inverted_list["Token"], columns=[str(doc)])
-                matrix = pd.concat([matrix, zeros], axis=1)
-                matrix.at[token, str(doc)] = 1
+                zeros = pd.DataFrame(np.zeros(shape), index=lista_invertida["Token"], columns=[str(documento)])
+                matriz = pd.concat([matriz, zeros], axis=1)
+                matriz.at[token, str(documento)] = 1
     time_taken = datetime.now() - start_time
     logging.info(f"Finished generating the term document matrix. Time taken: {time_taken}.")
-    logging.info(f"Matrix has {len(matrix.index)} tokens and {len(matrix.columns)} documents.")
-    return matrix
+    logging.info(f"Matrix has {len(matriz.index)} tokens and {len(matriz.columns)} documents.")
+    return matriz
 
-def get_model(matrix, type_tf="tf"):
+def carregar_modelo(matriz, tipo_tf="tf"):
     logging.basicConfig(filename='../RESULT/INDEX.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
     msg = "Started generating the model with tf"
-    if type_tf == "tf":
+    if tipo_tf == "tf":
         msg += "."
     else:
         msg += " normalized."
     msg += " The time which the model will be constructed will depend upon the iterations per second, at 5it/s it takes around 20min to build the model"
     logging.info(msg)
     start_time = datetime.now()
-    weights = matrix.copy()
-    for token in tqdm(weights.index):
-        idf = get_idf(token, weights)
-        for document in weights.columns:
-            tf = get_tfn(token, document, matrix) if type_tf == "tfn" else get_tfn(token, document, matrix) 
+    pesos = matriz.copy()
+    for token in tqdm(pesos.index):
+        idf = get_idf(token, pesos)
+        for documento in pesos.columns:
+            tf = get_tfn(token, documento, matriz) if tipo_tf == "tfn" else get_tfn(token, documento, matriz) 
             wij = tf * idf
-            weights.loc[token, str(document)] = wij
+            pesos.loc[token, str(documento)] = wij
     time_taken = datetime.now() - start_time
     logging.info(f"Finished generating the model. Time taken: {time_taken}.")
-    return weights
+    return pesos
 
-def save_matrix(save_path, tokens_file):
+def salvar_matriz(save_path, tokens_file):
     logging.basicConfig(filename='../RESULT/INDEX.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
-    matrix = get_term_document_matrix(tokens_file)
-    matrix.to_csv(save_path, sep=";")
+    matriz = gerar_matriz_termos_documentos(tokens_file)
+    matriz.to_csv(save_path, sep=";")
     logging.info("Term document matrix saved.")
-    return matrix
+    return matriz
 
-def save_model(path, tokens_file, type_tf):
+def salvar_modelo(caminho, tokens_file, tipo_tf):
     logging.basicConfig(filename='../RESULT/INDEX.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
-    matrix = save_matrix("../RESULT/MATRIZ.csv", tokens_file)
-    model = get_model(matrix, type_tf)
-    model.to_csv(path, sep=";")
+    matriz = salvar_matriz("../RESULT/MATRIZ.csv", tokens_file)
+    model = carregar_modelo(matriz, tipo_tf)
+    model.to_csv(caminho, sep=";")
     logging.info("Model saved.")
 
 def finish_execution():
