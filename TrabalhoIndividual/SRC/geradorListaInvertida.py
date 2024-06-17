@@ -40,7 +40,7 @@ def gerar_texto_recordnum(arquivo):
     logging.info(f"Finished creating the dictionary record_num: {arquivo}. {registros} records in file. Time taken: {time_taken}s")
     return texto_recordnum
 
-def preprocessar_texto(text):
+def preprocessar_texto(text, stemmer):
     tokens = wordpunct_tokenize(text)
     stop_en = stopwords.words("english")
     texto_filtrado = []
@@ -51,14 +51,17 @@ def preprocessar_texto(text):
             continue
         elif len(palavra) < 3:
             continue    
-        else:
+        # Inserção da palavra aplicando o stemmer ou não
+        if stemmer:
             stemmer = PorterStemmer()
             word_stemmed = stemmer.stem(palavra)
             texto_filtrado.append(word_stemmed.upper())
+        else:
+            texto_filtrado.append(palavra.upper())
     return texto_filtrado
 
-def frequencia_palavra(text, numero_registro):
-    texto_tokenizado = preprocessar_texto(text)
+def frequencia_palavra(text, numero_registro, stemmer):
+    texto_tokenizado = preprocessar_texto(text, stemmer)
     dicionario_frequencia = {}
     for palavra in texto_tokenizado:
         keys = list(dicionario_frequencia.keys())
@@ -68,7 +71,7 @@ def frequencia_palavra(text, numero_registro):
             dicionario_frequencia[palavra] = [numero_registro]
     return dicionario_frequencia
 
-def gerar_lista_invertida(arquivos_leitura):
+def gerar_lista_invertida(arquivos_leitura, stemmer):
     logging.basicConfig(filename='../RESULT/GLI.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
     logging.info(f"Started creating the inverted list.")
     times = np.array([])
@@ -80,7 +83,7 @@ def gerar_lista_invertida(arquivos_leitura):
         registros_arquivos = gerar_texto_recordnum(arquivo)
         registros_arquivos_nums = list(registros_arquivos.keys())
         for numero_registro in registros_arquivos_nums:
-            record_dict = frequencia_palavra(registros_arquivos[numero_registro], numero_registro)
+            record_dict = frequencia_palavra(registros_arquivos[numero_registro], numero_registro, stemmer)
             used_tokens = list(record_dict.keys())
             for token in used_tokens:
                 previous_records = lista_invertida.get(token, [])
@@ -95,11 +98,11 @@ def gerar_lista_invertida(arquivos_leitura):
     logging.info(f"Finished creating the inverted list.")
     return lista_invertida
 
-def gerar_arquivo_tokens(arquivos_leitura, path):
+def gerar_arquivo_tokens(arquivos_leitura, path, stemmer):
     logging.basicConfig(filename='../RESULT/GLI.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
     logging.info(f"Started creating the inverted list file.")
     with open(path, 'w') as w_file:
-        lista_invertida = gerar_lista_invertida(arquivos_leitura)
+        lista_invertida = gerar_lista_invertida(arquivos_leitura, stemmer)
         tokens = list(lista_invertida.keys())
         w_file.write("Token;Appearance\n")
         for token in tokens:

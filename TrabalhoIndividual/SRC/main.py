@@ -14,8 +14,8 @@ pc.finish_execution()
 
 # GERADOR LISTA INVERTIDA
 gli.begin_execution()
-read_files, write_file = read_config("GLI.CFG")
-gli.gerar_arquivo_tokens(read_files, write_file)
+read_files, write_file, stemmer = read_config("GLI.CFG")
+gli.gerar_arquivo_tokens(read_files, write_file, stemmer)
 gli.finish_execution()
 
 # INDEXADOR
@@ -31,9 +31,9 @@ indexador.finish_execution()
 
 # BUSCADOR
 buscador.begin_execution()
-model_file, queries_file, results_file = read_config("BUSCA.CFG")
+model_file, queries_file, results_file, stemmer = read_config("BUSCA.CFG")
 model = buscador.carregar_modelo(model_file)
-queries = buscador.carregar_queries(queries_file)
+queries = buscador.carregar_queries(queries_file, stemmer)
 ranking = buscador.criar_ranking(model, queries)
 buscador.gerar_resultados(results_file, ranking)
 buscador.finish_execution()

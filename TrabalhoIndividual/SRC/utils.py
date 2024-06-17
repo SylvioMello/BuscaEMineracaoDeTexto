@@ -17,6 +17,7 @@ def read_config(config_file):
     expected_file = "../RESULT/"
     results_file = "../RESULT/"
     cfg_path = "../BasesTrabalhoIndividual/" + config_file
+    stemmer = False
 
     if module == 'PC':
         with open(cfg_path, "r") as config_file:
@@ -29,10 +30,16 @@ def read_config(config_file):
                     queries_file += filename
                 elif instruction == "ESPERADOS":
                     expected_file += filename
-            logging.info("Finished reading the configuration file.")
-            return (read_file, queries_file, expected_file)
+        logging.info("Finished reading the configuration file.")
+        return (read_file, queries_file, expected_file)
     elif module == 'GLI':
         with open(cfg_path, "r") as config_file:
+            first_line = config_file.readline()
+            if first_line == "STEMMER\n":
+                logging.info("Stemming option is ON.")
+                stemmer = True
+            else:
+                logging.info("Stemming option is OFF.") 
             for line in config_file.readlines():
                 instruction, filename = line.split("=")
                 filename = filename.strip()
@@ -41,8 +48,8 @@ def read_config(config_file):
                     read_files.append(file_path)
                 elif instruction == "ESCREVA":
                     write_file += filename
-            logging.info("Finished reading the configuration file.")
-            return (read_files, write_file)
+        logging.info("Finished reading the configuration file.")
+        return (read_files, write_file, stemmer)
     elif module == 'INDEX':
         with open(cfg_path, "r") as config_file:
             for line in config_file.readlines():
@@ -52,8 +59,8 @@ def read_config(config_file):
                     read_file_index += filename
                 elif instruction == "ESCREVA":
                     write_file += filename
-            logging.info("Finished reading the configuration file.")
-            return (read_file_index, write_file)
+        logging.info("Finished reading the configuration file.")
+        return (read_file_index, write_file)
     elif module == 'BUSCA':
         with open(cfg_path, "r") as config_file:
             for line in config_file.readlines():
@@ -65,8 +72,13 @@ def read_config(config_file):
                     queries_file += filename
                 elif instruction == "RESULTADOS":
                     results_file += filename
-            logging.info("Finished reading the configuration file.")
-            return model_file, queries_file, results_file
+        if results_file.find("-stemmer") != -1:
+            stemmer = True
+            logging.info("Stemming option is ON.")
+        else:
+            logging.info("Stemming option is OFF.")
+        logging.info("Finished reading the configuration file.")
+        return model_file, queries_file, results_file, stemmer
     else:
         print('This module is not implemented to be used, please use one of: PC, GLI, INDEX, BUSCA')
         sys.exit(1)

@@ -21,13 +21,13 @@ def carregar_modelo(arquivo_modelo):
     logging.info("Model loaded.")
     return modelo
 
-def carregar_queries(arquivo_consultas):
+def carregar_queries(arquivo_consultas, stemmer):
     logging.basicConfig(filename='../RESULT/BUSCA.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
     logging.info("Loading queries.")
     consultas = pd.read_csv(arquivo_consultas, sep=";")
     consultas.set_index(["QueryNumber"], inplace=True)
     for numero, texto in consultas.itertuples():
-        texto_processado = gli.preprocessar_texto(texto)
+        texto_processado = gli.preprocessar_texto(texto, stemmer)
         consultas.at[numero, "QueryText"] = texto_processado
     logging.info("Queries loaded.")
     return consultas
