@@ -1,25 +1,25 @@
-2024-06-17 14:13:23,829 - Initializing log...
-2024-06-17 14:13:23,829 - Downloading 'punkt' and 'stopwords' from nltk-data...
-2024-06-17 14:13:24,299 - Finished downloading 'punkt' and 'stopwords'.
-2024-06-17 14:13:24,383 - Module of Inverted List Generated started.
-2024-06-17 14:13:24,383 - Started reading the configuration file.
-2024-06-17 14:13:24,389 - Stemming option is OFF.
-2024-06-17 14:13:24,390 - Finished reading the configuration file.
-2024-06-17 14:13:24,390 - Started creating the inverted list file.
-2024-06-17 14:13:24,391 - Started creating the inverted list.
-2024-06-17 14:13:24,391 - Started creating the dictionary record_num: ../BasesTrabalhoIndividual\cf74.xml
-2024-06-17 14:13:24,430 - Finished creating the dictionary record_num: ../BasesTrabalhoIndividual\cf74.xml. 167 records in file. Time taken: 0:00:00.038897s
-2024-06-17 14:13:24,531 - Started creating the dictionary record_num: ../BasesTrabalhoIndividual\cf75.xml
-2024-06-17 14:13:24,571 - Finished creating the dictionary record_num: ../BasesTrabalhoIndividual\cf75.xml. 188 records in file. Time taken: 0:00:00.039523s
-2024-06-17 14:13:24,682 - Started creating the dictionary record_num: ../BasesTrabalhoIndividual\cf76.xml
-2024-06-17 14:13:24,744 - Finished creating the dictionary record_num: ../BasesTrabalhoIndividual\cf76.xml. 227 records in file. Time taken: 0:00:00.061835s
-2024-06-17 14:13:24,877 - Started creating the dictionary record_num: ../BasesTrabalhoIndividual\cf77.xml
-2024-06-17 14:13:24,919 - Finished creating the dictionary record_num: ../BasesTrabalhoIndividual\cf77.xml. 199 records in file. Time taken: 0:00:00.041916s
-2024-06-17 14:13:25,036 - Started creating the dictionary record_num: ../BasesTrabalhoIndividual\cf78.xml
-2024-06-17 14:13:25,071 - Finished creating the dictionary record_num: ../BasesTrabalhoIndividual\cf78.xml. 199 records in file. Time taken: 0:00:00.034907s
-2024-06-17 14:13:25,181 - Started creating the dictionary record_num: ../BasesTrabalhoIndividual\cf79.xml
-2024-06-17 14:13:25,226 - Finished creating the dictionary record_num: ../BasesTrabalhoIndividual\cf79.xml. 259 records in file. Time taken: 0:00:00.043915s
-2024-06-17 14:13:25,374 - 6 files procesed. Average time: 0:00:00.163708s.
-2024-06-17 14:13:25,374 - Finished creating the inverted list.
-2024-06-17 14:13:25,398 - Finished creating the inverted list file.
-2024-06-17 14:13:25,399 - Module generate_inverted_list finished execution.
+2024-06-17 15:34:54,150 - Initializing log...
+2024-06-17 15:34:54,150 - Downloading 'punkt' and 'stopwords' from nltk-data...
+2024-06-17 15:34:54,333 - Finished downloading 'punkt' and 'stopwords'.
+2024-06-17 15:34:54,378 - Module of Inverted List Generated started.
+2024-06-17 15:34:54,378 - Started reading the configuration file.
+2024-06-17 15:34:54,383 - Stemming option is ON.
+2024-06-17 15:34:54,383 - Finished reading the configuration file.
+2024-06-17 15:34:54,383 - Started creating the inverted list file.
+2024-06-17 15:34:54,384 - Started creating the inverted list.
+2024-06-17 15:34:54,385 - Started creating the dictionary record_num: ../BasesTrabalhoIndividual\cf74.xml
+2024-06-17 15:34:54,401 - Finished creating the dictionary record_num: ../BasesTrabalhoIndividual\cf74.xml. 167 records in file. Time taken: 0:00:00.016983s
+2024-06-17 15:34:54,729 - Started creating the dictionary record_num: ../BasesTrabalhoIndividual\cf75.xml
+2024-06-17 15:34:54,748 - Finished creating the dictionary record_num: ../BasesTrabalhoIndividual\cf75.xml. 188 records in file. Time taken: 0:00:00.018949s
+2024-06-17 15:34:55,146 - Started creating the dictionary record_num: ../BasesTrabalhoIndividual\cf76.xml
+2024-06-17 15:34:55,177 - Finished creating the dictionary record_num: ../BasesTrabalhoIndividual\cf76.xml. 227 records in file. Time taken: 0:00:00.030917s
+2024-06-17 15:34:55,656 - Started creating the dictionary record_num: ../BasesTrabalhoIndividual\cf77.xml
+2024-06-17 15:34:55,678 - Finished creating the dictionary record_num: ../BasesTrabalhoIndividual\cf77.xml. 199 records in file. Time taken: 0:00:00.021970s
+2024-06-17 15:34:56,080 - Started creating the dictionary record_num: ../BasesTrabalhoIndividual\cf78.xml
+2024-06-17 15:34:56,099 - Finished creating the dictionary record_num: ../BasesTrabalhoIndividual\cf78.xml. 199 records in file. Time taken: 0:00:00.018950s
+2024-06-17 15:34:56,467 - Started creating the dictionary record_num: ../BasesTrabalhoIndividual\cf79.xml
+2024-06-17 15:34:56,488 - Finished creating the dictionary record_num: ../BasesTrabalhoIndividual\cf79.xml. 259 records in file. Time taken: 0:00:00.020976s
+2024-06-17 15:34:56,997 - 6 files procesed. Average time: 0:00:00.435461s.
+2024-06-17 15:34:56,997 - Finished creating the inverted list.
+2024-06-17 15:34:57,015 - Finished creating the inverted list file.
+2024-06-17 15:34:57,017 - Module generate_inverted_list finished execution.
