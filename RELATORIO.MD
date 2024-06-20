@@ -10,82 +10,82 @@ Os arquivos CSV usados para gerar os gráficos estão armazenados no diretório 
 
 * Stemmer
 
-![11pontos-stemmer](AVALIA/11pontos-stemmer-1.png)
+![11pontos-stemmer](TrabalhoIndividual/AVALIA/11pontos-stemmer-1.png)
 
 * NoStemmer
 
-![11pontos-nostemmer](AVALIA/11pontos-nostemmer-2.png)
+![11pontos-nostemmer](TrabalhoIndividual/AVALIA/11pontos-nostemmer-1.png)
 
 ## 2. $F_1$ score
 
 * Stemmer
 
-![f1-stemmer](AVALIA/f1-stemmer-3.png)
+![f1-stemmer](TrabalhoIndividual/AVALIA/f1-stemmer-3.png)
 
 * NoStemmer
 
-![f1-nostemer](AVALIA/f1-nostemmer-4.png)
+![f1-nostemer](TrabalhoIndividual/AVALIA/f1-nostemmer-3.png)
 
 ## 3. Precision@5
 
 * Stemmer
 
-![precision@5-stemmer](AVALIA/precision@5-stemmer-5.png)
+![precision@5-stemmer](TrabalhoIndividual/AVALIA/precision@5-stemmer-5.png)
 
 * NoStemmer
 
-![precision@5-nostemmer](AVALIA/precision@5-nostemmer-6.png)
+![precision@5-nostemmer](TrabalhoIndividual/AVALIA/precision@5-nostemmer-5.png)
 
 ## 4. Precision@10
 
 * Stemmer
 
-![precision@10-stemmer](AVALIA/precision@10-stemmer-7.png)
+![precision@10-stemmer](TrabalhoIndividual/AVALIA/precision@10-stemmer-7.png)
 
 * NoStemmer
 
-![precision@10-nostemmer](AVALIA/precision@10-nostemmer-8.png)
+![precision@10-nostemmer](TrabalhoIndividual/AVALIA/precision@10-nostemmer-7.png)
 
 ## 5. Histograma Comparativo de R-Precision
 
-![r-precision](AVALIA/r-precision-comparativo-9.png)
+![r-precision](TrabalhoIndividual/AVALIA/r-precision-comparativo-9.png)
 
 ## 6. MAP
 
 * Stemmer
 
-![map-stemmer](AVALIA/map-stemmer-10.png)
+![map-stemmer](TrabalhoIndividual/AVALIA/map-stemmer-10.png)
 
 * NoStemmer
 
-![map-nostemmer](AVALIA/map-nostemmer-11.png)
+![map-nostemmer](TrabalhoIndividual/AVALIA/map-nostemmer-10.png)
 
 ## 7. MRR
 
 * Stemmer
 
-![mrr-stemmer](AVALIA/mrr-stemmer-12.png)
+![mrr-stemmer](TrabalhoIndividual/AVALIA/mrr-stemmer-12.png)
 
 * NoStemmer
 
-![mrr-nostemmer](AVALIA/mrr-nostemmer-13.png)
+![mrr-nostemmer](TrabalhoIndividual/AVALIA/mrr-nostemmer-12.png)
 
 ## 8. Discounted Cumulative Gain
 
 * Stemmer
 
-![dcg-stemmer](AVALIA/dcg-stemmer-14.png)
+![dcg-stemmer](TrabalhoIndividual/AVALIA/dcg-stemmer-14.png)
 
 * NoStemmer
 
-![dcg-nostemmer](AVALIA/dcg-nostemmer-15.png)
+![dcg-nostemmer](TrabalhoIndividual/AVALIA/dcg-nostemmer-14.png)
 
 ## 9. Normalized Discounted Cumulative Gain
 
 * Stemmer
 
-![ndcg-stemmer](AVALIA/ndcg-stemmer-16.png)
+![ndcg-stemmer](TrabalhoIndividual/AVALIA/ndcg-stemmer-16.png)
 
 * NoStemmer
 
-![ndcg-nostemmer](AVALIA/ndcg-nostemmer-17.png)
+![ndcg-nostemmer](TrabalhoIndividual/AVALIA/ndcg-nostemmer-16.png)
