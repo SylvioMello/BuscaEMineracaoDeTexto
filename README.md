@@ -29,3 +29,11 @@ pip install -r requirements.txt
 ```shell
 python3 main.py
 ```
+
+## AVALIAÇÃO DE UM MODELO DE RECUPERAÇÃO DA INFORMAÇÃO - Trabalho 2
+
+Neste segundo trabalho, é solicitado que o modelo seja avaliado utilizando diferentes métricas. Antes de abordarmos essas métricas, algumas mudanças importantes foram feitas no funcionamento do mecanismo. Ambas as mudanças ocorrem dentro do arquivo de configuração de dois módulos.
+
+A primeira mudança está no arquivo de configuração do módulo "Gerar Lista Invertida" [`GLI.CFG`](TrabalhoIndividual/BasesTrabalhoIndividual/GLI.CFG). Na primeira linha, será indicada a utilização ou não de um stemmer. As opções para essa linha são "STEMMER" ou "NOSTEMMER".
+
+A segunda mudança ocorre no arquivo de configuração do módulo "Buscador" [`BUSCA.CFG`](TrabalhoIndividual/BasesTrabalhoIndividual/BUSCA.CFG). Aqui, será indicado se o texto das consultas passará por um stemmer ou não. Isso será feito adicionando "-stemmer" ao nome do arquivo de resultados, caso afirmativo, ou "-nostemmer", caso negativo.
