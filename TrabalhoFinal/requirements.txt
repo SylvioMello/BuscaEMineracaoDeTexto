@@ -1,0 +1,4 @@
+git+https://github.com/gpassero/uol-redacoes-xml.git
+scikit-learn
+nltk
+html5lib
