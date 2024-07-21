@@ -1,0 +1,10 @@
+Avalie essa redação modelo ENEM. Você deve focar principalmente na competência 5, conclusão. Mais especificamente, você deve verificar se todos os problemas levantados durante os parágrafos anteriores da dissertação foram resolvidos na conclusão. Então, sua resposta deve vir no seguinte formato: 
+Problema 1: 
+Resumo de poucas palavras do primeiro problema abordado ao longo da dissertação. 
+Abordagem na dissertação: [TRECHO CURTO DE POUCAS PALAVRAS ONDE O PROBLEMA É MENCIONADO PELA PRIMEIRA VEZ] 
+Abordagem na conclusão: [TRECHO CURTO DE POUCAS PALAVRAS ONDE O PROBLEMA É MENCIONADO NA CONCLUSÃO] 
+
+Problema 2: ... 
+
+Caso algum problema citado ao longo da dissertação não seja resolvido na conclusão, você deve escrever "NAO ENCONTRADO" na parte "Abordagem na conclusão".
+Redação:
